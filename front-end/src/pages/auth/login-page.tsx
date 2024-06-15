@@ -7,20 +7,51 @@ import {
   Input,
   Stack,
   Text,
-  useBoolean
+  useBoolean,
+  useToast
 } from '@chakra-ui/react';
 import LandscapeLogoComponent from 'components/logo/landscapeLogo';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FormSubmitLogin } from 'types/submit-login.type';
 import { loginSchema } from './login-schema.validation';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { apiBoticario } from 'services/api';
+import { AxiosResponse } from 'axios';
+import { UserAuthState } from 'interfaces/user-auth-state.interface';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { LocalitonState } from 'types/location.type';
+import { SigninOptions } from 'interfaces/auth-provider.interface';
+import useAuth from 'hooks/useAuth';
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useBoolean();
+  const location = useLocation();
+  const { signin, userState } = useAuth();
+  const from = (location.state as LocalitonState)?.from.pathname || '/';
+  const toast = useToast();
+
   const onSubmit: SubmitHandler<FormSubmitLogin> = async (payload) => {
     const { username, password } = payload;
     console.log(username);
     setIsLoading.on();
+
+    apiBoticario
+      .post('/auth/login', { username, password })
+      .then(({ data }: AxiosResponse<UserAuthState>) => {
+        const options: SigninOptions = {
+          userState: data,
+          callback: () => navigate(from, { replace: true })
+        };
+
+        signin(options);
+      })
+      .catch(({ response }) => {
+        console.log(response);
+      })
+      .finally(() => {
+        setIsLoading.off();
+      });
   };
 
   const methods = useForm<FormSubmitLogin>({
@@ -64,7 +95,6 @@ export default function LoginPage() {
             />
             <Text color="red">{errors.username?.message}</Text>
 
-            
             <Input
               placeholder="Senha"
               type="password"
