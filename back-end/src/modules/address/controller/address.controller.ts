@@ -1,8 +1,10 @@
 import {
+  BadRequestException,
     Body,
     Controller,
     Delete,
     Get,
+    NotFoundException,
     Param,
     Post,
   } from '@nestjs/common';
@@ -36,8 +38,16 @@ import { AddressService } from '../services/address.service';
   
     @Delete(':id')
     @ApiOperation({ summary: 'Excluir um endereço' })
-    delete(@Param() payload: DeleteAddressRequestDto) {
-        return this.addressService.delete(payload.id);
+    async delete(@Param() payload: DeleteAddressRequestDto) {
+      try {
+        return await this.addressService.delete(payload.id);
+      } catch (error) {
+        if (error instanceof NotFoundException) {
+          throw new NotFoundException(error.message);
+        }
+        throw new BadRequestException(`${error.message}`);
+      }
     }
+
   }
   

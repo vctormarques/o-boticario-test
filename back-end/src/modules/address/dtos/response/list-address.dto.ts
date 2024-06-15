@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsInt, IsString } from 'class-validator';
+import { IsInt, IsOptional, IsString } from 'class-validator';
 
 export class ListAddressResponseDto {
     @ApiProperty()
@@ -24,6 +24,7 @@ export class ListAddressResponseDto {
 
     @ApiProperty()
     @IsString()
+    @IsOptional()
     numero: string;
 
     @ApiProperty()
