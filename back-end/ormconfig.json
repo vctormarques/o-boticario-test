@@ -1,0 +1,21 @@
+[
+  {
+    "type": "mysql",
+    "name": "default",
+    "host": "localhost",
+    "port": "3306",
+    "username": "root",
+    "password": "",
+    "database": "test_bot",
+    "entities": [
+      "C:\\Workspace\\pessoal\\boticario\\back-end\\dist/**/*.entity.{js,ts}",
+      "dist/modules/**/entities/**/*.entity.{js,ts}"
+    ],
+    "synchronize": false,
+    "migrations": [
+      "dist/modules/database/migrations/*.js"
+    ],
+    "migrationsRun": true,
+    "cli": {}
+  }
+]
