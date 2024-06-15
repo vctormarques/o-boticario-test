@@ -6,7 +6,7 @@ import {
   Param,
   Post,
 } from '@nestjs/common';
-import { Category } from '../entities/category.entity';
+import { CategoryEntity } from '../entities/category.entity';
 import { CategoryService } from '../services/category.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateCategoryRequestDto } from '../dtos/request/create-category.dto';
@@ -22,7 +22,7 @@ export class CategoryController {
   @Get()
   @ApiOperation({ summary: 'Listar todas as categorias' })
   @ApiResponse({ status: 200, description: 'Lista de categorias', type: ListCategoryResponseDto, isArray: true })
-  findAll(): Promise<Category[]> {
+  findAll(): Promise<CategoryEntity[]> {
     return this.categoryService.findAll();
   }
 
