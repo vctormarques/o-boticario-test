@@ -10,7 +10,7 @@ import {
   useBoolean,
   useToast
 } from '@chakra-ui/react';
-import LandscapeLogoComponent from 'components/logo/landscapeLogo';
+import LandscapeLogoComponent from 'components/logo/landscape-logo';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FormSubmitLogin } from 'types/submit-login.type';
 import { loginSchema } from './login-schema.validation';

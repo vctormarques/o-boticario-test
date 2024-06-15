@@ -9,6 +9,10 @@ const authProvider = {
     localStorage.setItem('@ApiBot:userData', JSON.stringify({ userState }));
 
     return userState;
+  },
+
+  logout(){
+    localStorage.removeItem('@ApiBot:userData');
   }
 };
 

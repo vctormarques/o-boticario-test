@@ -40,10 +40,17 @@ const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({
     options.callback();
   };
 
+  const signout = (callback: VoidFunction) => {
+    authProvider.logout();
+    setUserState(INITIAL_STATE);
+    callback();
+  }
+
   const memoedValue = React.useMemo(
     () => ({
       userState,
       signin,
+      signout,
       loading
     }),
     [userState, loading]

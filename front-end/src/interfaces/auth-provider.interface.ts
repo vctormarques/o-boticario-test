@@ -8,5 +8,6 @@ export interface SigninOptions {
 export interface AuthContextInterface {
     userState: UserAuthState;
     signin: (options: SigninOptions) => void;
+    signout: (callback: VoidFunction) => void;
     loading: boolean;
 }
