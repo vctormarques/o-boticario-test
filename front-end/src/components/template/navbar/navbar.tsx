@@ -34,7 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpen }) => {
         variant="outline"
         mr={2}
       />
-      <Heading size="sm" color="#00a470">
+      <Heading size="sm" color="#a1b970">
         {auth.userState.user.nome}
       </Heading>
       <Spacer />
