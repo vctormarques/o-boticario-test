@@ -1,6 +1,6 @@
 import { AddressEntity } from '@modules/address/entities/address.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, BeforeInsert } from 'typeorm';
-import { PasswordService } from '../services/password.service';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
+import * as bcrypt from 'bcryptjs';
 
 @Entity({ name: 'cliente' })
 export class ClientEntity {
@@ -32,13 +32,16 @@ export class ClientEntity {
   @JoinColumn({ name: 'endereco_id' })
   endereco: AddressEntity;
 
-  private passwordService: PasswordService = new PasswordService();
-
   @BeforeInsert()
   async hashPasswordBeforeInsert() {
     if (this.senha) {
-      this.senha = await this.passwordService.hashPassword(this.senha);
+      this.senha = await bcrypt.hash(this.senha, 10);
     }
+  }
+
+  toJSON() {
+    const { senha, ...rest } = this;
+    return rest;
   }
 
 }

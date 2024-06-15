@@ -35,6 +35,7 @@ export class Kernel {
       .setTitle('Boticário')
       .setDescription('API do Boticário')
       .setVersion(version)
+      .addBearerAuth() 
       .build();
 
     const document = SwaggerModule.createDocument(this.app, config);

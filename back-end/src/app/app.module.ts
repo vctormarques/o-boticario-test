@@ -1,5 +1,6 @@
 import configuration from '@config/configuration';
 import { AddressModule } from '@modules/address/address.module';
+import { AuthModule } from '@modules/auth/auth.module';
 import { CategoryModule } from '@modules/category/category.module';
 import { ClientModule } from '@modules/client/client.module';
 import { TypeOrmConfigService } from '@modules/database/services/typeorm-config.service';
@@ -25,6 +26,7 @@ import { LoggerModule } from 'nestjs-pino';
     EventEmitterModule.forRoot({ wildcard: true, maxListeners: 12 }),
     ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
+    AuthModule,
     CategoryModule,
     AddressModule,
     ClientModule,

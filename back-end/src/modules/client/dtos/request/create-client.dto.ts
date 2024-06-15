@@ -17,10 +17,8 @@ export class CreateClientRequestDto {
   username: string;
 
   @IsString()
-  @MaxLength(20)
   @ApiProperty({
       description: 'Senha do cliente',
-      maxLength: 20,
       example: 'senha123',
       required: true,
   })

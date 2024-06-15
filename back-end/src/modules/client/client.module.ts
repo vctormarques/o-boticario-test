@@ -12,7 +12,7 @@ import { PasswordService } from './services/password.service';
     forwardRef(() => AddressModule),
   ],
   controllers: [ClientController],
-  providers: [ClientService, PasswordService],
-  exports: [TypeOrmModule],
+  providers: [ClientService, PasswordService,],
+  exports: [ClientService, TypeOrmModule.forFeature([ClientEntity])],
 })
 export class ClientModule {}
