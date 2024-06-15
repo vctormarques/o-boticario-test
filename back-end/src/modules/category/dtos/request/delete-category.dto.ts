@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsNumber} from 'class-validator';
 
-export class DeleteCategoryDto {
+export class DeleteCategoryRequestDto {
     @IsNotEmpty()
     @ApiProperty({
         description: 'Código da categoria',
