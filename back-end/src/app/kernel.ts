@@ -15,6 +15,7 @@ export class Kernel {
     whitelist: true,
     forbidNonWhitelisted: true,
     stopAtFirstError: true,
+    transform: true,
   };
   async boot() {
     const cfg = this.app.get(ConfigService);

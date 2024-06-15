@@ -1,6 +1,7 @@
 import configuration from '@config/configuration';
 import { AddressModule } from '@modules/address/address.module';
 import { CategoryModule } from '@modules/category/category.module';
+import { ClientModule } from '@modules/client/client.module';
 import { TypeOrmConfigService } from '@modules/database/services/typeorm-config.service';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -25,7 +26,8 @@ import { LoggerModule } from 'nestjs-pino';
     ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     CategoryModule,
-    AddressModule
+    AddressModule,
+    ClientModule,
   ],
 })
 export class AppModule {}
