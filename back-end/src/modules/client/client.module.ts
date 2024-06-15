@@ -4,6 +4,7 @@ import { ClientEntity } from './entities/client.entity';
 import { ClientController } from './controllers/client.controller';
 import { ClientService } from './services/client.service';
 import { AddressModule } from '@modules/address/address.module';
+import { PasswordService } from './services/password.service';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import { AddressModule } from '@modules/address/address.module';
     forwardRef(() => AddressModule),
   ],
   controllers: [ClientController],
-  providers: [ClientService],
+  providers: [ClientService, PasswordService],
   exports: [TypeOrmModule],
 })
 export class ClientModule {}

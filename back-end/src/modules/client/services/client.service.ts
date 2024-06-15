@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { ClientEntity } from '../entities/client.entity';
 import { CreateClientRequestDto } from '../dtos/request/create-client.dto';
 import { AddressEntity } from '@modules/address/entities/address.entity';
+import { PasswordService } from './password.service';
 
 @Injectable()
 export class ClientService {
@@ -12,7 +13,7 @@ export class ClientService {
         private readonly clientRepository: Repository<ClientEntity>,
         @InjectRepository(AddressEntity)
         private readonly addressRepository: Repository<AddressEntity>,
-    
+        private readonly passwordService: PasswordService
     ) {}
 
     async findAll(): Promise<ClientEntity[]> {
@@ -30,9 +31,11 @@ export class ClientService {
               throw new NotFoundException(`Endereço com ID ${payload.endereco_id} não encontrado`);
             }
       
+            const hashedPassword = await this.passwordService.hashPassword(payload.senha);
             const client = this.clientRepository.create({
-              ...payload,
-              endereco: address,
+            ...payload,
+            senha: hashedPassword,
+            endereco: address,
             });
             
             return await this.clientRepository.save(client);
