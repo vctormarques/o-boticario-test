@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Category } from '../entities/category.entity';
+import { CreateCategoryDto } from '../dtos/create-category.dto';
 
 @Injectable()
 export class CategoryService {
@@ -11,6 +12,27 @@ export class CategoryService {
     ) {}
 
     async findAll(): Promise<Category[]> {
-        return await this.categoryRepository.find();
+        try {
+            return await this.categoryRepository.find();
+        } catch (error) {
+            throw new Error(`Erro ao listar as categorias: ${error.message}`);
+        }  
+    }
+
+    async create(payload: CreateCategoryDto){
+        try {
+            return await this.categoryRepository.save(payload);
+        } catch (error) {
+            throw new Error(`Erro ao criar categoria: ${error.message}`);
+        }  
+    }
+
+
+    async delete(id: number) {
+        const result = await this.categoryRepository.delete(id);
+        if (result.affected === 0) {
+            throw new NotFoundException(`Categoria com ID ${id} não encontrada`);
+        } 
+        return { message : 'Deletado com sucesso' }
     }
 }
