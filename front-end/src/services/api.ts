@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { IAddressRequest } from 'interfaces/address.interface';
 import { ICategoryRequest } from 'interfaces/category.interface';
+import { IClientRequest } from 'interfaces/client.interface';
 
 export const apiBoticario = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}`,
@@ -83,6 +84,32 @@ export const endpoints = {
     create: async (payload: IAddressRequest) => {
       return await apiBoticario
         .post(`/address/`, payload)
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response;
+        });
+    }
+  },
+  client: {
+    list: async () => {
+      return await apiBoticario
+        .get('/client')
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response.data;
+        });
+    },
+    delete: async (id: number) => {
+      return await apiBoticario
+        .delete(`/client/${id}`)
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response.data;
+        });
+    },
+    create: async (payload: IClientRequest) => {
+      return await apiBoticario
+        .post(`/client/`, payload)
         .then((result) => result.data)
         .catch(({ response }) => {
           throw response;
