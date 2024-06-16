@@ -33,7 +33,6 @@ export default function LoginPage() {
 
   const onSubmit: SubmitHandler<FormSubmitLogin> = async (payload) => {
     const { username, password } = payload;
-    console.log(username);
     setIsLoading.on();
 
     apiBoticario
