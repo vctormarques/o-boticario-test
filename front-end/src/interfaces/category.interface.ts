@@ -12,3 +12,9 @@ export interface ICategoryTableProps {
   categories: ICategory[];
   onDelete: (index: number) => void;
 }
+
+export interface ICategoryModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onCreate: (category: ICategoryRequest) => void;
+}

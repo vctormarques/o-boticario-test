@@ -86,7 +86,7 @@ export const endpoints = {
         .post(`/address/`, payload)
         .then((result) => result.data)
         .catch(({ response }) => {
-          throw response;
+          throw response.data;
         });
     }
   },
@@ -112,7 +112,7 @@ export const endpoints = {
         .post(`/client/`, payload)
         .then((result) => result.data)
         .catch(({ response }) => {
-          throw response;
+          throw response.data;
         });
     }
   }

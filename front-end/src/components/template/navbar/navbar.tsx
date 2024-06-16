@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   Heading,
@@ -6,6 +6,7 @@ import {
   IconButton,
   Spacer,
   HStack,
+  Text
 } from '@chakra-ui/react';
 import { IoIosLogOut } from 'react-icons/io';
 import { HamburgerIcon } from '@chakra-ui/icons';
@@ -13,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from 'hooks/useAuth';
 
 interface NavbarProps {
-  onOpen: () => void; 
+  onOpen: () => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ onOpen }) => {
@@ -23,6 +24,26 @@ const Navbar: React.FC<NavbarProps> = ({ onOpen }) => {
   const handleLogout = () => {
     auth.signout(() => navigate('/login'));
   };
+  
+  const getCurrentTime = () => {
+    const now = new Date();
+    return now.toLocaleTimeString('pt-BR', {
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      timeZone: 'America/Sao_Paulo',
+    });
+  };
+
+  const [currentTime, setCurrentTime] = useState<string>(getCurrentTime());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(getCurrentTime());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Flex p={4} bg="gray.200" alignItems="center">
@@ -36,6 +57,9 @@ const Navbar: React.FC<NavbarProps> = ({ onOpen }) => {
       />
       <Heading size="sm" color="#a1b970">
         {auth.userState.user.nome}
+        <Text fontSize={'0.8rem'} color="#777" mt={'0.2rem'}>
+          Hora Atual: {currentTime}
+        </Text>
       </Heading>
       <Spacer />
       <HStack spacing={4} alignItems="center">
