@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IAddressRequest } from 'interfaces/address.interface';
 import { ICategoryRequest } from 'interfaces/category.interface';
 
 export const apiBoticario = axios.create({
@@ -37,7 +38,7 @@ apiBoticario.interceptors.response.use(
 
 export const endpoints = {
   category: {
-    list: async (token: string) => {
+    list: async () => {
       return await apiBoticario
         .get('/category')
         .then((result) => result.data)
@@ -56,6 +57,32 @@ export const endpoints = {
     create: async (payload: ICategoryRequest) => {
       return await apiBoticario
         .post(`/category/`, payload)
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response;
+        });
+    }
+  },
+  address: {
+    list: async () => {
+      return await apiBoticario
+        .get('/address')
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response;
+        });
+    },
+    delete: async (id: number) => {
+      return await apiBoticario
+        .delete(`/address/${id}`)
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response;
+        });
+    },
+    create: async (payload: IAddressRequest) => {
+      return await apiBoticario
+        .post(`/address/`, payload)
         .then((result) => result.data)
         .catch(({ response }) => {
           throw response;
