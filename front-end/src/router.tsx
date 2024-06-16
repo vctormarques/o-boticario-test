@@ -1,11 +1,10 @@
-// src/components/Router.tsx
-
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/auth/login-page';
-import ClientPage from 'pages/client/client';
 import RequireAuth from 'pages/auth/require-auth';
-import Layout from 'pages/home/home';
+import HomePage from 'pages/home/home';
+import ClientPage from 'pages/client/client';
+import CategoryPage from 'pages/category/category';
 
 const Router: React.FC = () => {
   return (
@@ -15,15 +14,15 @@ const Router: React.FC = () => {
         path="/"
         element={
           <RequireAuth>
-            <Layout />
+            <HomePage />
           </RequireAuth>
         }
       />
       <Route
-        path="/client"
+        path="/category"
         element={
           <RequireAuth>
-            <ClientPage />
+            <CategoryPage />
           </RequireAuth>
         }
       />

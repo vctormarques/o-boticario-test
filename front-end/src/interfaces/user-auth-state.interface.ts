@@ -1,7 +1,7 @@
 import { User } from "./user.interface";
 
 export interface UserAuthState {
-    acess_token: string;
+    accessToken: string;
     expiresIn: number;
     tokenType: string;
     user: User;

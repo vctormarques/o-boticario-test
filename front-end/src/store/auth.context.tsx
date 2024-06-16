@@ -7,7 +7,7 @@ import {
 import { UserAuthState } from 'interfaces/user-auth-state.interface';
 
 const INITIAL_STATE: UserAuthState = {
-  acess_token: '',
+  accessToken: '',
   expiresIn: 3600,
   tokenType: '',
   user: {
