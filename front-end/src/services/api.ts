@@ -43,7 +43,7 @@ export const endpoints = {
         .get('/category')
         .then((result) => result.data)
         .catch(({ response }) => {
-          throw response;
+          throw response.data;
         });
     },
     delete: async (id: number) => {
@@ -51,7 +51,7 @@ export const endpoints = {
         .delete(`/category/${id}`)
         .then((result) => result.data)
         .catch(({ response }) => {
-          throw response;
+          throw response.data;
         });
     },
     create: async (payload: ICategoryRequest) => {
@@ -59,7 +59,7 @@ export const endpoints = {
         .post(`/category/`, payload)
         .then((result) => result.data)
         .catch(({ response }) => {
-          throw response;
+          throw response.data;
         });
     }
   },
@@ -69,7 +69,7 @@ export const endpoints = {
         .get('/address')
         .then((result) => result.data)
         .catch(({ response }) => {
-          throw response;
+          throw response.data;
         });
     },
     delete: async (id: number) => {
@@ -77,7 +77,7 @@ export const endpoints = {
         .delete(`/address/${id}`)
         .then((result) => result.data)
         .catch(({ response }) => {
-          throw response;
+          throw response.data;
         });
     },
     create: async (payload: IAddressRequest) => {

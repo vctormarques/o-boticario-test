@@ -20,6 +20,9 @@ const SidebarMenu: React.FC = () => {
         <NavLinkButton to="/client" icon={PlusSquareIcon}>
           Cliente
         </NavLinkButton>
+        <NavLinkButton to="/address" icon={PlusSquareIcon}>
+          Endereço
+        </NavLinkButton>
       </VStack>
     </VStack>
   );

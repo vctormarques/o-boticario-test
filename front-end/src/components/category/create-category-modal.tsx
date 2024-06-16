@@ -30,7 +30,6 @@ const CreateCategoryModal: React.FC<CategoryModalProps> = ({
     nome_categoria: '',
     descricao_categoria: ''
   });
-  const [description, setDescription] = useState('');
   const toast = useToast();
 
   const handleCreateCategory = () => {
