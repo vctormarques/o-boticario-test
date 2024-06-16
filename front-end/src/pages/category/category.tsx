@@ -23,7 +23,7 @@ export default function CategoryPage() {
   useEffect(() => {
     setIsLoading.on();
     endpoints.category
-      .list(userState.accessToken)
+      .list()
       .then((result) => {
         setCategories(result);
       })
