@@ -18,8 +18,6 @@ const NavLinkButton: React.FC<NavLinkButtonProps> = ({
   const location = useLocation();
   const isActive = location.pathname === to;
   const IconComponent = icon;
-  console.log('path', location.pathname);
-  console.log('isActive', isActive);
   return (
     <NavLink to={to} className={`nav-link ${isActive ? 'active' : 'inactive'}`}>
       <Button

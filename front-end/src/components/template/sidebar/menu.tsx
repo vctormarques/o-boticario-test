@@ -14,7 +14,7 @@ const SidebarMenu: React.FC = () => {
         <NavLinkButton to="/produtos" icon={PlusSquareIcon}>
           Produtos
         </NavLinkButton>
-        <NavLinkButton to="/categoria" icon={PlusSquareIcon}>
+        <NavLinkButton to="/category" icon={PlusSquareIcon}>
           Categoria
         </NavLinkButton>
         <NavLinkButton to="/client" icon={PlusSquareIcon}>
