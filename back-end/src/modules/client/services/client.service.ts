@@ -24,11 +24,28 @@ export class ClientService {
     }
   }
 
-  async create(payload: CreateClientRequestDto){
+  async create(payload: CreateClientRequestDto) {
     try {
-      const address = await this.addressRepository.findOne({ where: { endereco_id: payload.endereco_id } });
+      const address = await this.addressRepository.findOne({
+        where: { endereco_id: payload.endereco_id },
+      });
       if (!address) {
-        throw new NotFoundException(`Endereço com ID ${payload.endereco_id} não encontrado`);
+        throw new NotFoundException(
+          `Endereço com ID ${payload.endereco_id} não encontrado`
+        );
+      }
+
+      const cpfError = await this.checkIfExists('cpf', payload.cpf);
+      if (cpfError) {
+        throw new Error(cpfError);
+      }
+
+      const usernameError = await this.checkIfExists(
+        'username',
+        payload.username
+      );
+      if (usernameError) {
+        throw new Error(usernameError);
       }
 
       const client = this.clientRepository.create({
@@ -41,21 +58,46 @@ export class ClientService {
       throw new Error(`Erro ao criar cliente: ${error.message}`);
     }
   }
-  
 
   async delete(id: number) {
     const result = await this.clientRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`Cliente com ID ${id} não encontrado`);
     }
-    return { message : 'Deletado com sucesso' }
+    return { message: 'Deletado com sucesso' };
   }
 
-  async validateClientCredentials(username: string): Promise<ClientEntity | null> {
-    const client = await this.clientRepository.findOne({where: { username }});
+  async validateClientCredentials(
+    username: string
+  ): Promise<ClientEntity | null> {
+    const client = await this.clientRepository.findOne({ where: { username } });
     if (!client) {
       return null;
     }
     return client;
+  }
+
+  async checkIfExists(
+    texto: string,
+    value: string
+  ): Promise<string | undefined> {
+    try {
+      let whereClause = {};
+      whereClause[texto] = value;
+
+      const existingClient = await this.clientRepository.findOne({
+        where: whereClause,
+      });
+
+      if (existingClient) {
+        return `${texto === 'cpf' ? 'CPF' : 'Username'} ${value} já está em uso`;
+      }
+
+      return undefined;
+    } catch (error) {
+      throw new Error(
+        `Erro ao verificar existência de cliente: ${error.message}`
+      );
+    }
   }
 }
