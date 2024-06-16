@@ -13,15 +13,9 @@ import {
   Input,
   useToast
 } from '@chakra-ui/react';
-import { ICategoryRequest } from 'interfaces/category.interface';
+import { ICategoryModalProps, ICategoryRequest } from 'interfaces/category.interface';
 
-interface CategoryModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onCreate: (category: ICategoryRequest) => void;
-}
-
-const CreateCategoryModal: React.FC<CategoryModalProps> = ({
+const CreateCategoryModal: React.FC<ICategoryModalProps> = ({
   isOpen,
   onClose,
   onCreate
