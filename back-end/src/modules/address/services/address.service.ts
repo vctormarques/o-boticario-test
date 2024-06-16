@@ -40,16 +40,14 @@ export class AddressService {
     const client = await this.clientRepository.findOne({
       where: { endereco: { endereco_id: id } },
     });
-
-    const result = await this.addressRepository.delete(id);
-    if (result.affected === 0) {
-      throw new NotFoundException(`Endereço com ID ${id} não encontrado`);
-    }
-
     if (client) {
       throw new BadRequestException(
         `Não é possível excluir o endereço, porque ele está associado a um ou mais clientes.`
       );
+    }
+    const result = await this.addressRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Endereço com ID ${id} não encontrado`);
     }
 
     return { message: 'Deletado com sucesso' };
