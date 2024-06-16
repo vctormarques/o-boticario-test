@@ -3,6 +3,10 @@ export interface ICategory {
   nome_categoria: string;
   descricao_categoria: string;
 }
+export interface ICategoryRequest {
+  nome_categoria: string;
+  descricao_categoria: string;
+}
 
 export interface ICategoryTableProps {
   categories: ICategory[];

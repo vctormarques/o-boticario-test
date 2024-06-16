@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ICategoryRequest } from 'interfaces/category.interface';
 
 export const apiBoticario = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}`,
@@ -47,6 +48,14 @@ export const endpoints = {
     delete: async (id: number) => {
       return await apiBoticario
         .delete(`/category/${id}`)
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response;
+        });
+    },
+    create: async (payload: ICategoryRequest) => {
+      return await apiBoticario
+        .post(`/category/`, payload)
         .then((result) => result.data)
         .catch(({ response }) => {
           throw response;
