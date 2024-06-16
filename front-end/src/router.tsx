@@ -35,6 +35,14 @@ const Router: React.FC = () => {
           </RequireAuth>
         }
       />
+      <Route
+        path="/client"
+        element={
+          <RequireAuth>
+            <ClientPage />
+          </RequireAuth>
+        }
+      />
     </Routes>
   );
 };
