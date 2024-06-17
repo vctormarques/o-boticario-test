@@ -1,6 +1,7 @@
 import { AddressEntity } from '@modules/address/entities/address.entity';
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, BeforeInsert, BeforeUpdate, OneToMany } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
+import { OrderEntity } from '@modules/order/entities/order.entity';
 
 @Entity({ name: 'cliente' })
 export class ClientEntity {
@@ -43,5 +44,8 @@ export class ClientEntity {
     const { senha, ...rest } = this;
     return rest;
   }
+
+  @OneToMany(() => OrderEntity, pedido => pedido.cliente)
+  pedidos: OrderEntity[];
 
 }

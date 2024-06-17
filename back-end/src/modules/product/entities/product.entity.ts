@@ -1,10 +1,12 @@
 import { CategoryEntity } from '@modules/category/entities/category.entity';
+import { ProductOrderEntity } from '@modules/product-order/entities/product-order.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity({ name: 'produto' })
@@ -38,5 +40,8 @@ export class ProductEntity {
   })
   @JoinColumn({ name: 'categoria_id' })
   categoria: CategoryEntity;
+
+  @OneToMany(() => ProductOrderEntity, (produtoPedido) => produtoPedido.produto)
+  produtos: ProductOrderEntity[];
 }
 
