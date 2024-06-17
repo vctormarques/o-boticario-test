@@ -7,6 +7,8 @@ import ClientPage from 'pages/client/client';
 import CategoryPage from 'pages/category/category';
 import AddressPage from 'pages/address/address';
 import ProductPage from 'pages/product/product';
+import OrderPage from 'pages/order/order';
+import SalesOrderPage from 'pages/order/sales-order';
 
 const Router: React.FC = () => {
   return (
@@ -49,6 +51,22 @@ const Router: React.FC = () => {
         element={
           <RequireAuth>
             <ProductPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/order"
+        element={
+          <RequireAuth>
+            <OrderPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/sales-order"
+        element={
+          <RequireAuth>
+            <SalesOrderPage />
           </RequireAuth>
         }
       />

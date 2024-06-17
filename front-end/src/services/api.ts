@@ -145,5 +145,24 @@ export const endpoints = {
           throw response.data;
         });
     }
+  },
+  order: {
+    list: async () => {
+      return await apiBoticario
+        .get('/order')
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response.data;
+        });
+    },
+    viewProd: async (id: number) => {
+      return await apiBoticario
+        .get(`/order/${id}/products/`)
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response.data;
+        });
+    },
+
   }
 };
