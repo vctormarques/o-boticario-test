@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/auth/login-page';
 import RequireAuth from 'pages/auth/require-auth';
-import HomePage from 'pages/home/home';
 import ClientPage from 'pages/client/client';
 import CategoryPage from 'pages/category/category';
 import AddressPage from 'pages/address/address';
@@ -18,7 +17,7 @@ const Router: React.FC = () => {
         path="/"
         element={
           <RequireAuth>
-            <HomePage />
+            <OrderPage />
           </RequireAuth>
         }
       />
