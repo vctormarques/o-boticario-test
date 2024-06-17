@@ -7,7 +7,7 @@ export class CreateAddressRequestDto {
     @ApiProperty({
         description: 'CEP',
         maxLength: 9,
-        example: '75530390',
+        example: '01100000',
     })
     cep: string;
 
@@ -15,8 +15,8 @@ export class CreateAddressRequestDto {
     @MaxLength(100)
     @ApiProperty({
         description: 'Rua',
-        maxLength: 9,
-        example: 'Rua Adejar Ferreira Machado',
+        maxLength: 100,
+        example: 'Rua Joao da Cruz',
     })
     rua: string;
 
@@ -25,7 +25,7 @@ export class CreateAddressRequestDto {
     @ApiProperty({
         description: 'Bairro',
         maxLength: 30,
-        example: 'Nova Veneza',
+        example: 'Ponte Pequena',
     })
     bairro: string;
 
@@ -33,8 +33,8 @@ export class CreateAddressRequestDto {
     @MaxLength(30)
     @ApiProperty({
         description: 'Cidade',
-        maxLength: 9,
-        example: 'Itumbiara',
+        maxLength: 30,
+        example: 'São Paulo',
     })
     cidade: string;
 
@@ -61,7 +61,7 @@ export class CreateAddressRequestDto {
     @ApiProperty({
         description: 'UF',
         maxLength: 9,
-        example: 'GO',
+        example: 'SP',
     })
     uf: string;
 
