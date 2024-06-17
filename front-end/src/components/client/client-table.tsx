@@ -2,6 +2,7 @@ import React from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td, IconButton } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 import { IClientTableProps } from 'interfaces/client.interface';
+import { masker } from 'helpers/masker';
 
 const ClientTable: React.FC<IClientTableProps> = ({
   customers,
@@ -12,10 +13,10 @@ const ClientTable: React.FC<IClientTableProps> = ({
       <Thead>
         <Tr>
           <Th>#</Th>
-          <Th>CEP</Th>
-          <Th>Rua</Th>
-          <Th>Bairro</Th>
-          <Th>Cidade/UF</Th>
+          <Th>Nome</Th>
+          <Th>Email</Th>
+          <Th>CPF</Th>
+          <Th>Telefone</Th>
           <Th>Excluir</Th>
         </Tr>
       </Thead>
@@ -25,8 +26,8 @@ const ClientTable: React.FC<IClientTableProps> = ({
             <Td>{index + 1}</Td>
             <Td>{cli.nome}</Td>
             <Td>{cli.email}</Td>
-            <Td>{cli.cpf}</Td>
-            <Td>{cli.telefone} </Td>
+            <Td>{masker.cpf(cli.cpf)}</Td>
+            <Td>{masker.phone(cli.telefone)} </Td>
             <Td>
               <IconButton
                 variant="outline"

@@ -8,6 +8,7 @@ import ConfirmModal from 'components/modal/confirm-delete-modal';
 import { IClient, IClientRequest } from 'interfaces/client.interface';
 import ClientTable from 'components/client/client-table';
 import CreateClientModal from 'components/client/create-client-modal';
+import { masker } from 'helpers/masker';
 
 export default function ClientPage() {
   const [customers, setCustomers] = useState<IClient[]>([]);
@@ -53,6 +54,8 @@ export default function ClientPage() {
 
   const handleCreateClient = (payload: IClientRequest) => {
     payload.endereco_id = Number(payload.endereco_id);
+    payload.cpf = masker.removeMaskFromCPF(payload.cpf);
+    payload.telefone = masker.removeMaskFromCPF(payload.telefone);
     setIsLoading.on();
     endpoints.client
       .create(payload)

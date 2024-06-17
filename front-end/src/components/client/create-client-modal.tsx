@@ -27,6 +27,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import AInput from 'components/input/input';
 import { IAddress } from 'interfaces/address.interface';
 import { endpoints } from 'services/api';
+import { FormatFieldCpf, FormatFieldPhone } from 'helpers/formatters';
 
 const CreateClientModal: React.FC<IClientCreateModalProps> = ({
   isOpen,
@@ -133,6 +134,7 @@ const CreateClientModal: React.FC<IClientCreateModalProps> = ({
                       required: 'Este campo é obrigatório'
                     })}
                     isInvalid={!!errors.cpf}
+                    onInput={FormatFieldCpf}
                   />
                 </FormControl>
               </GridItem>
@@ -144,6 +146,7 @@ const CreateClientModal: React.FC<IClientCreateModalProps> = ({
                       required: 'Este campo é obrigatório'
                     })}
                     isInvalid={!!errors.telefone}
+                    onInput={FormatFieldPhone}
                   />
                 </FormControl>
               </GridItem>
