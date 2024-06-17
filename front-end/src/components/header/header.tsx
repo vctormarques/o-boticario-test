@@ -3,8 +3,8 @@ import { Button, Flex, Heading, VStack } from '@chakra-ui/react';
 
 interface HeaderProps {
   title: string;
-  titleButton: string;
-  onButton: () => void;
+  titleButton?: string;
+  onButton?: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ title, titleButton, onButton }) => {
@@ -13,9 +13,11 @@ const Header: React.FC<HeaderProps> = ({ title, titleButton, onButton }) => {
       <Heading size="md" color="#00a470" ml="6">
         {title}
       </Heading>
-      <Button colorScheme="green" mr="6" onClick={() => onButton()}>
-        {titleButton}
-      </Button>
+      {titleButton && onButton && (
+        <Button colorScheme="green" mr="6" onClick={() => onButton()}>
+          {titleButton}
+        </Button>
+      )}
     </Flex>
   );
 };
