@@ -1,4 +1,5 @@
 import { ICategory } from "./category.interface";
+import { IProductOrder } from "./product-order.interface";
 
 export interface IProduct {
   produto_id: number;
@@ -21,8 +22,11 @@ export interface IProductRequest {
 }
 
 export interface IProductTableProps {
-  customers: IProduct[];
+  products: IProduct[];
   onDelete: (index: number) => void;
+}
+export interface IProductOrderTableProps {
+  products: IProductOrder[];
 }
 
 export interface IProductCreateModalProps {
