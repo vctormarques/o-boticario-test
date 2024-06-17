@@ -53,6 +53,7 @@ export default function ProductPage() {
   };
 
   const handleCreateProduct = (payload: IProductRequest) => {
+    const preco_produto = masker.money_to_Float(payload.preco_produto.toString());
     const formData = new FormData();
     if (payload.imagem) {
       formData.append('imagem', payload.imagem);
@@ -61,7 +62,7 @@ export default function ProductPage() {
     formData.append('descricao_produto', payload.descricao_produto);
     formData.append('categoria_id', String(payload.categoria_id));
     formData.append('qtd_estoque', String(payload.qtd_estoque));
-    formData.append('preco_produto', payload.preco_produto.toString());
+    formData.append('preco_produto', String(preco_produto));
     setIsLoading.on();
     endpoints.product
       .create(formData)
