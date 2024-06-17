@@ -62,8 +62,11 @@ Inicialize o projeto
 npm start
 ```
 
+- O Swagger está disponivel no endpoint /docs
+
 Comandos adicionais
 ```
 npx typeorm migration:run
 ```
+
 
