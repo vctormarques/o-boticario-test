@@ -8,7 +8,7 @@ const SidebarMenu: React.FC = () => {
   return (
     <VStack spacing={4} alignItems="flex-start" mt={4} ml={3}>
       <VStack spacing={4} alignItems="flex-start" mt={4} ml={3}>
-        <NavLinkButton to="/sales-order" icon={IoMdClipboard}>
+        <NavLinkButton to="/order" icon={IoMdClipboard}>
           Pedido
         </NavLinkButton>
         <NavLinkButton to="/product" icon={PlusSquareIcon}>
