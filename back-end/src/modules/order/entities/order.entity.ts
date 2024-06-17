@@ -10,6 +10,9 @@ export class OrderEntity {
   @Column({ nullable: true })
   numero_pedido: number;
 
+  @Column({ nullable: true })
+  cliente_id: number;
+
   @Column({ nullable: true, type: 'numeric' })
   valor_total_pedido: number;
 

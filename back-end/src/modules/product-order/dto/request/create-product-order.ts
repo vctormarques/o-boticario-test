@@ -33,13 +33,5 @@ export class CreateProductOrderRequestDto {
     required: true,
   })
   preco_produto_pedido: string;
-
-  @IsInt()
-  @ApiProperty({
-    description: 'Id do produto',
-    example: 1,
-    required: true,
-  })
-  pedido_id: number;
   
 }

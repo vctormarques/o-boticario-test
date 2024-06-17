@@ -1,6 +1,6 @@
 import { CreateProductOrderRequestDto } from '@modules/product-order/dto/request/create-product-order';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsInt, IsArray } from 'class-validator';
+import { IsInt, IsArray, IsNumber } from 'class-validator';
 
 export class CreateOrderRequestDto {
   @IsInt()
@@ -10,6 +10,14 @@ export class CreateOrderRequestDto {
     required: true,
   })
   numero_pedido: number;
+
+  @IsNumber()
+  @ApiProperty({
+    description: 'Valor Total do pedido',
+    example: 548.71,
+    required: true,
+  })
+  valor_total_pedido: number;
 
   @IsInt()
   @ApiProperty({

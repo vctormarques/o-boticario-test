@@ -47,6 +47,20 @@ export class OrderService {
   }
 
   async create(payload: CreateOrderRequestDto) {
-    return payload;
+    const { numero_pedido, cliente_id, valor_total_pedido, produtos } = payload;
+
+    const saveOrder = new OrderEntity();
+    saveOrder.numero_pedido = numero_pedido;
+    saveOrder.cliente_id = cliente_id;
+    saveOrder.valor_total_pedido = valor_total_pedido;
+    saveOrder.status = true;
+    saveOrder.produtosPedido = produtos.map(product => {
+      const productOrder = new ProductOrderEntity();
+      productOrder.produto_id = product.produto_id;
+      productOrder.qtd_produto_pedido = product.qtd_produto_pedido;
+      productOrder.preco_produto_pedido = parseFloat(product.preco_produto_pedido);
+      return productOrder;
+    });
+    return await this.orderRepository.save(saveOrder);
   }
 }
