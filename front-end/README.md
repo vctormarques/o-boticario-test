@@ -1,6 +1,6 @@
 # Frontend - O Boticário
 
-Este projeto foi desenvolvido utilizando React com Chakra UI. Consta uma funcionalidade de busca automática de CEP utilizando a API ViaCEP e possui login e senha com autenticação via banco.
+Este projeto foi desenvolvido utilizando React com Chakra UI. Conta uma funcionalidade de busca automática de CEP utilizando a API ViaCEP e possui login e senha com autenticação via banco.
 
 ## Tecnologias Utilizadas
 
@@ -28,7 +28,7 @@ Este projeto foi desenvolvido utilizando React com Chakra UI. Consta uma funcion
 
 ```bash
 git clone https://github.com/vctormarques/o-boticario-test.git
-cd o-boticario-test
+cd o-boticario-test/front-end
 ```
 Copie o arquivo .env.example e renomeie para .env:
 ```
