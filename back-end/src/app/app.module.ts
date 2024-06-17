@@ -4,6 +4,7 @@ import { AuthModule } from '@modules/auth/auth.module';
 import { CategoryModule } from '@modules/category/category.module';
 import { ClientModule } from '@modules/client/client.module';
 import { TypeOrmConfigService } from '@modules/database/services/typeorm-config.service';
+import { OrderModule } from '@modules/order/order.module';
 import { ProductModule } from '@modules/product/product.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -34,6 +35,7 @@ import { join } from 'path';
     AddressModule,
     ClientModule,
     ProductModule,
+    OrderModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
     }),
