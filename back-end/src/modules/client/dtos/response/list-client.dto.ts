@@ -4,40 +4,68 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsDate, IsInt, IsOptional } from 'class-validator';
 
 export class ListClientDto {
+  @ApiProperty({
+    description: 'ID do cliente',
+    example: 1,
+  })
   cliente_id: number;
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'E-mail do cliente',
+    example: 'teste@gmail.com',
+  })
   @IsInt()
   email: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Username do cliente',
+    example: 'teste',
+  })
   @IsInt()
   username: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Senha do cliente',
+  })
   @IsInt()
   senha: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Senha do cliente',
+    example: 'Teste Oliveira',
+  })
   @IsInt()
   @IsOptional()
   nome: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'CPF do cliente',
+    example: '123.123.123-12',
+  })
   @IsInt()
   @IsOptional()
   cpf: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'CPF do cliente',
+    example: '123.123.123-12',
+  })
   @IsInt()
   @IsOptional()
   telefone?: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Data de Nascimento do cliente',
+    example: '2024-06-17T10:45:52.659Z',
+  })
   @IsDate()
   @IsOptional()
   data_nascimento?: Date;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Endereço do cliente',
+    type: ListAddressResponseDto,
+  })
   @IsInt()
   endereco: ListAddressResponseDto;
 

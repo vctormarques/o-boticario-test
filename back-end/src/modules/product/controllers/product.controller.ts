@@ -45,8 +45,7 @@ export class ProductController {
   @ApiResponse({
     status: 200,
     description: 'Cadastro efetuado',
-    type: CreateProductRequestDto,
-    isArray: true,
+    type: CreateProductRequestDto
   })
   async create(
     @UploadedFile() file: MulterFile,

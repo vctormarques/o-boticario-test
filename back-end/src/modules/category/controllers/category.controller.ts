@@ -28,7 +28,7 @@ export class CategoryController {
 
   @Post()
   @ApiOperation({ summary: 'Cadastrar uma categoria' })
-  @ApiResponse({ status: 200, description: 'Cadastro efetuado', type: CreateCategoryResponseDto, isArray: true })
+  @ApiResponse({ status: 200, description: 'Cadastro efetuado', type: CreateCategoryResponseDto})
   create(@Body() payload: CreateCategoryRequestDto) {
     return this.categoryService.create(payload);
   }
