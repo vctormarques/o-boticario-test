@@ -2,6 +2,7 @@ import axios from 'axios';
 import { IAddressRequest } from 'interfaces/address.interface';
 import { ICategoryRequest } from 'interfaces/category.interface';
 import { IClientRequest } from 'interfaces/client.interface';
+import { IOrderRequest } from 'interfaces/order.interface';
 
 export const apiBoticario = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}`,
@@ -163,6 +164,13 @@ export const endpoints = {
           throw response.data;
         });
     },
-
+    create: async (payload: IOrderRequest) => {
+      return await apiBoticario
+        .post(`/order/`, payload)
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response.data;
+        });
+    }
   }
 };

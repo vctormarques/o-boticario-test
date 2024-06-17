@@ -14,5 +14,5 @@ export interface IProductOrderRequest {
   produto_id: number;
   qtd_produto_pedido: number;
   preco_produto_pedido: number;
-  pedido_id: number;
+  nome_produto?: string | null;
 }

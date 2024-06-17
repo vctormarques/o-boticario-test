@@ -13,6 +13,7 @@ export interface IOrder {
 
 export interface IOrderRequest {
   numero_pedido: number;
+  valor_total_pedido: number;
   cliente_id: number;
   produtos: IProductOrderRequest[];
 }
