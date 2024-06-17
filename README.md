@@ -9,5 +9,14 @@ Este repositório contém a implementação de um teste técnico. O projeto cons
 [Clique aqui](https://github.com/vctormarques/o-boticario-test/tree/master/front-end) para rodar o front-end.
 
 ## Abaixo alguns prints do sistema
-
+* Login
 ![Login](prints/login.png)
+
+* Produtos
+![Produtos](prints/produtos.png)
+
+* Pedidos
+![Pedidos](prints/pedido.png)
+
+* Novo Pedido
+![Novo Pedido](prints/novo_pedido.png)
