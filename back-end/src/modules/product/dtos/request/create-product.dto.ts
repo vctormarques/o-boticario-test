@@ -41,6 +41,7 @@ export class CreateProductRequestDto {
     qtd_estoque: number;
 
     @IsString()
+    @IsOptional()
     @ApiProperty({
         description: 'Nome da imagem',
         required: false,
