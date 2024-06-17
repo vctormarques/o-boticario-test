@@ -28,7 +28,7 @@ export class CreateClient1718433093672 implements MigrationInterface {
                 {
                     name: 'senha',
                     type: 'varchar',
-                    length: '20',
+                    length: '100',
                     isNullable: true,
                 },
                 {

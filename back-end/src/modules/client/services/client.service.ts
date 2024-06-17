@@ -35,9 +35,11 @@ export class ClientService {
         );
       }
 
-      const cpfError = await this.checkIfExists('cpf', payload.cpf);
-      if (cpfError) {
-        throw new Error(cpfError);
+      if(payload.cpf){
+        const cpfError = await this.checkIfExists('cpf', payload.cpf);
+        if (cpfError) {
+          throw new Error(cpfError);
+        }
       }
 
       const usernameError = await this.checkIfExists(

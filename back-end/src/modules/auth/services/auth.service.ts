@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { PasswordService } from '@modules/client/services/password.service';
 import { AuthRequestDto } from '../dtos/auth.dto';
 import { ClientService } from '@modules/client/services/client.service';
@@ -17,17 +17,17 @@ export class AuthService {
       payload.username
     );
     if (!client) {
-      throw new UnauthorizedException('Login/Senha inválidos');
+      throw new BadRequestException('Login/Senha inválidos');
     }
     const isPasswordValid = await this.passwordService.comparePasswords(
       String(payload.password).trim(),
       String(client.senha).trim()
     );
-
+  
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Login/Senha inválidos');
+      throw new BadRequestException('Login/Senha inválidos');
     }
-
+  
     return this.jwtService.sign({
       id: client.cliente_id,
       nome: client.nome,
