@@ -5,7 +5,7 @@ import { IProductTableProps } from 'interfaces/product.interface';
 import { masker } from 'helpers/masker';
 
 const ProductTable: React.FC<IProductTableProps> = ({
-  customers,
+  products,
   onDelete
 }) => {
   return (
@@ -21,7 +21,7 @@ const ProductTable: React.FC<IProductTableProps> = ({
         </Tr>
       </Thead>
       <Tbody>
-        {customers.map((prod, index) => (
+        {products.map((prod, index) => (
           <Tr key={index}>
             <Td>{index + 1}</Td>
             <Td>{prod.nome_produto}</Td>
