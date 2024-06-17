@@ -8,8 +8,10 @@ import { ProductModule } from '@modules/product/product.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerModule } from 'nestjs-pino';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -32,6 +34,9 @@ import { LoggerModule } from 'nestjs-pino';
     AddressModule,
     ClientModule,
     ProductModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+    }),
   ],
 })
 export class AppModule {}
