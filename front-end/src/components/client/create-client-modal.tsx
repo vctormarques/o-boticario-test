@@ -97,9 +97,7 @@ const CreateClientModal: React.FC<IClientCreateModalProps> = ({
                 <FormControl mb={4}>
                   <FormLabel>E-mail</FormLabel>
                   <Input
-                    {...register('email', {
-                      required: 'Este campo é obrigatório'
-                    })}
+                    {...register('email')}
                     isInvalid={!!errors.email}
                   />
                 </FormControl>
@@ -130,9 +128,7 @@ const CreateClientModal: React.FC<IClientCreateModalProps> = ({
                 <FormControl mb={4}>
                   <FormLabel>CPF</FormLabel>
                   <Input
-                    {...register('cpf', {
-                      required: 'Este campo é obrigatório'
-                    })}
+                    {...register('cpf')}
                     isInvalid={!!errors.cpf}
                     onInput={FormatFieldCpf}
                   />
@@ -142,9 +138,7 @@ const CreateClientModal: React.FC<IClientCreateModalProps> = ({
                 <FormControl mb={4}>
                   <FormLabel>Telefone</FormLabel>
                   <Input
-                    {...register('telefone', {
-                      required: 'Este campo é obrigatório'
-                    })}
+                    {...register('telefone')}
                     isInvalid={!!errors.telefone}
                     onInput={FormatFieldPhone}
                   />

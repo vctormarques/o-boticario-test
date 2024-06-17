@@ -115,5 +115,35 @@ export const endpoints = {
           throw response.data;
         });
     }
+  },
+  product: {
+    list: async () => {
+      return await apiBoticario
+        .get('/product')
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response.data;
+        });
+    },
+    delete: async (id: number) => {
+      return await apiBoticario
+        .delete(`/product/${id}`)
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response.data;
+        });
+    },
+    create: async (payload: FormData) => {
+      return await apiBoticario
+        .post(`/product/`, payload, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }
+        })
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response.data;
+        });
+    }
   }
 };
