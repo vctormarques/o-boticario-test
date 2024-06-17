@@ -165,7 +165,7 @@ export default function ProductPage() {
             p={4}
           >
             {products.length > 0 ? (
-              <ProductTable customers={products} onDelete={handleDelete} />
+              <ProductTable products={products} onDelete={handleDelete} />
             ) : (
               <Heading size="sm" color="gray.600">
                 Nenhum produto encontrado.
