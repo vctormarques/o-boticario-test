@@ -115,7 +115,7 @@ export default function SalesOrderPage() {
   const calculateTotal = () => {
     return productOrderFields
       .reduce((total, item) => {
-        return total + item.qtd_produto_pedido * item.preco_produto_pedido;
+        return total + item.qtd_produto_pedido * masker.money_to_Float(item.preco_produto_pedido.toString());
       }, 0)
       .toFixed(2);
   };
@@ -123,7 +123,7 @@ export default function SalesOrderPage() {
   const onSubmit = (data: IOrderRequest) => {
     const numero_pedido = new Date().getTime();
     const totalOrder = calculateTotal();
-
+    
     const payloadOrder = {
       numero_pedido: numero_pedido,
       valor_total_pedido: masker.money_to_Float(totalOrder),
