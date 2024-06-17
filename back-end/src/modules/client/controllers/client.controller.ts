@@ -28,8 +28,8 @@ import { ClientService } from '../services/client.service';
     }
   
     @Post()
-    @ApiOperation({ summary: 'Cadastrar um client' })
-    @ApiResponse({ status: 200, description: 'Cadastro client', type: ListClientDto})
+    @ApiOperation({ summary: 'Cadastrar um cliente' })
+    @ApiResponse({ status: 200, description: 'Cadastro cliente', type: ListClientDto})
     async create(@Body() payload: CreateClientRequestDto) {
       try {
         return await this.clientService.create(payload);
