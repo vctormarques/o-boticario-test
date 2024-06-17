@@ -4,6 +4,7 @@ import { AuthModule } from '@modules/auth/auth.module';
 import { CategoryModule } from '@modules/category/category.module';
 import { ClientModule } from '@modules/client/client.module';
 import { TypeOrmConfigService } from '@modules/database/services/typeorm-config.service';
+import { ProductModule } from '@modules/product/product.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
@@ -30,6 +31,7 @@ import { LoggerModule } from 'nestjs-pino';
     CategoryModule,
     AddressModule,
     ClientModule,
+    ProductModule,
   ],
 })
 export class AppModule {}

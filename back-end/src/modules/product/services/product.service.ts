@@ -1,0 +1,56 @@
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { ProductEntity } from '../entities/product.entity';
+import { CreateProductRequestDto } from '../dtos/request/create-product.dto';
+import { CategoryEntity } from '@modules/category/entities/category.entity';
+
+@Injectable()
+export class ProductService {
+    constructor(
+        @InjectRepository(ProductEntity)
+        private productRepository: Repository<ProductEntity>,
+        @InjectRepository(CategoryEntity)
+        private categoryRepository: Repository<CategoryEntity>,
+    ) {}
+
+    async findAll(): Promise<ProductEntity[]> {
+        try {
+            return await this.productRepository.find({ relations: ['categoria'] });
+        } catch (error) {
+            throw new Error(`Erro ao listar produtos: ${error.message}`);
+        }  
+    }
+
+    async create(payload: CreateProductRequestDto){
+        try {
+            const category = await this.categoryRepository.findOne({
+              where: { categoria_id: payload.categoria_id },
+            });
+            if (!category) {
+              throw new NotFoundException(
+                `Categoria com ID ${payload.categoria_id} não encontrado`
+              );
+            }
+      
+            const product = this.productRepository.create({
+              ...payload,
+              categoria: category,
+            });
+      
+            return await this.productRepository.save(product);
+          } catch (error) {
+            throw new Error(`Erro ao criar produto: ${error.message}`);
+          }
+          
+    }
+
+
+    async delete(id: number) {
+        const result = await this.productRepository.delete(id);
+        if (result.affected === 0) {
+            throw new NotFoundException(`Produto com ID ${id} não encontrado`);
+        } 
+        return { message : 'Deletado com sucesso' }
+    }
+}

@@ -1,38 +1,53 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CategoryEntity } from '../entities/category.entity';
 import { CreateCategoryRequestDto } from '../dtos/request/create-category.dto';
+import { ProductEntity } from '@modules/product/entities/product.entity';
 
 @Injectable()
 export class CategoryService {
-    constructor(
-        @InjectRepository(CategoryEntity)
-        private categoryRepository: Repository<CategoryEntity>,
-    ) {}
+  constructor(
+    @InjectRepository(CategoryEntity)
+    private categoryRepository: Repository<CategoryEntity>,
+    @InjectRepository(ProductEntity)
+    private productRepository: Repository<ProductEntity>
+  ) {}
 
-    async findAll(): Promise<CategoryEntity[]> {
-        try {
-            return await this.categoryRepository.find();
-        } catch (error) {
-            throw new Error(`Erro ao listar as categorias: ${error.message}`);
-        }  
+  async findAll(): Promise<CategoryEntity[]> {
+    try {
+      return await this.categoryRepository.find();
+    } catch (error) {
+      throw new Error(`Erro ao listar as categorias: ${error.message}`);
+    }
+  }
+
+  async create(payload: CreateCategoryRequestDto) {
+    try {
+      return await this.categoryRepository.save(payload);
+    } catch (error) {
+      throw new Error(`Erro ao criar categoria: ${error.message}`);
+    }
+  }
+
+  async delete(id: number) {
+    const product = await this.productRepository.findOne({
+      where: { categoria: { categoria_id: id } },
+    });
+    if (product) {
+      throw new BadRequestException(
+        `Não é possível excluir a categoria, porque ela está associado a um ou mais produtos.`
+      );
     }
 
-    async create(payload: CreateCategoryRequestDto){
-        try {
-            return await this.categoryRepository.save(payload);
-        } catch (error) {
-            throw new Error(`Erro ao criar categoria: ${error.message}`);
-        }  
+    const result = await this.categoryRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Categoria com ID ${id} não encontrada`);
     }
-
-
-    async delete(id: number) {
-        const result = await this.categoryRepository.delete(id);
-        if (result.affected === 0) {
-            throw new NotFoundException(`Categoria com ID ${id} não encontrada`);
-        } 
-        return { message : 'Deletado com sucesso' }
-    }
+    return { message: 'Deletado com sucesso' };
+  }
 }
