@@ -41,7 +41,6 @@ export class ProductEntity {
   @JoinColumn({ name: 'categoria_id' })
   categoria: CategoryEntity;
 
-  @OneToMany(() => ProductOrderEntity, (produtoPedido) => produtoPedido.produto)
-  produtos: ProductOrderEntity[];
+  @OneToMany(() => ProductOrderEntity, produtoPedido => produtoPedido.produto)
+  produtosPedido: ProductOrderEntity[];
 }
-

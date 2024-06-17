@@ -23,7 +23,10 @@ export class OrderEntity {
   @JoinColumn({ name: 'cliente_id' })
   cliente: ClientEntity;
 
-  @OneToMany(() => ProductOrderEntity, (produtoPedido) => produtoPedido.pedido)
-  produtos: ProductOrderEntity[];
+  @OneToMany(() => ProductOrderEntity, produtoPedido => produtoPedido.pedido, { cascade: true })
+  produtosPedido: ProductOrderEntity[]; 
+
+  @OneToMany(() => ProductOrderEntity, produtoPedido => produtoPedido.pedido, { cascade: true })
+  pedidos: ProductOrderEntity[]; 
 
 }
