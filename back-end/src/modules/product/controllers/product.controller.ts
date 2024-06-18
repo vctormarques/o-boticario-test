@@ -1,10 +1,13 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
   Get,
+  NotFoundException,
   Param,
   Post,
+  Put,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -18,6 +21,7 @@ import { ListProductResponseDto } from '../dtos/response/list-product.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ImageService } from '@modules/image/image.service';
 import { MulterFile } from 'multer';
+import { UpdateProductRequestDto } from '../dtos/request/update-product.dto';
 
 @ApiTags('Product')
 @Controller('product')
@@ -45,7 +49,7 @@ export class ProductController {
   @ApiResponse({
     status: 200,
     description: 'Cadastro efetuado',
-    type: CreateProductRequestDto
+    type: CreateProductRequestDto,
   })
   async create(
     @UploadedFile() file: MulterFile,
@@ -62,5 +66,32 @@ export class ProductController {
   @ApiOperation({ summary: 'Excluir um produto' })
   delete(@Param() payload: DeleteProductRequestDto) {
     return this.productService.delete(payload.id);
+  }
+
+  @Put(':id')
+  @UseInterceptors(FileInterceptor('imagem'))
+  @ApiOperation({ summary: 'Atualizar um produto' })
+  @ApiResponse({
+    status: 200,
+    description: 'Produto atualizado',
+    type: CreateProductRequestDto,
+  })
+  async update(
+    @Param('id') id: string,
+    @UploadedFile() file: MulterFile,
+    @Body() payload: UpdateProductRequestDto
+  ) {
+    try {
+      if (file) {
+        const fileName = await this.imageService.saveImage(file);
+        payload.imagem = fileName;
+      }
+      return await this.productService.update(id, payload);
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw new NotFoundException(error.message);
+      }
+      throw new BadRequestException(`${error.message}`);
+    }
   }
 }

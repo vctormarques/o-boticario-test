@@ -80,7 +80,7 @@ export class ClientService {
       where: { cliente_id: parseInt(id) },
     });
     if (!client) {
-      throw new NotFoundException(`Categoria com id ${id} não encontrado`);
+      throw new NotFoundException(`Cliente com id ${id} não encontrado`);
     }
 
     if (payload.cpf) {
