@@ -1,12 +1,13 @@
 import React from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td, IconButton } from '@chakra-ui/react';
-import { DeleteIcon } from '@chakra-ui/icons';
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { IClientTableProps } from 'interfaces/client.interface';
 import { masker } from 'helpers/masker';
 
 const ClientTable: React.FC<IClientTableProps> = ({
   customers,
-  onDelete
+  onDelete,
+  onEdit
 }) => {
   return (
     <Table>
@@ -17,6 +18,7 @@ const ClientTable: React.FC<IClientTableProps> = ({
           <Th>Email</Th>
           <Th>CPF</Th>
           <Th>Telefone</Th>
+          <Th>Editar</Th>
           <Th>Excluir</Th>
         </Tr>
       </Thead>
@@ -30,9 +32,19 @@ const ClientTable: React.FC<IClientTableProps> = ({
             <Td>{masker.phone(cli.telefone)} </Td>
             <Td>
               <IconButton
+              variant="outline"
+                colorScheme="orange"
+                aria-label="Editar cliente"
+                icon={<EditIcon />}
+                onClick={() => onEdit(cli)}
+                mr={2}
+              />
+            </Td>
+            <Td>
+              <IconButton
                 variant="outline"
                 colorScheme="red"
-                aria-label="Excluir endereço"
+                aria-label="Excluir cliente"
                 size="md"
                 icon={<DeleteIcon />}
                 onClick={() => onDelete(cli.cliente_id)}

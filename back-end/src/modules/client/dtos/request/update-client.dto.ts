@@ -23,7 +23,7 @@ export class UpdateClientRequestDto {
   @ApiProperty({
     description: 'Senha do cliente',
     example: 'senha123',
-    required: true,
+    required: false,
   })
   senha: string;
 

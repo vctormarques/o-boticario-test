@@ -42,7 +42,7 @@ export class ClientService {
           throw new Error(cpfError);
         }
       }
-      
+
       if (payload.username) {
         const usernameError = await this.checkIfExists(
           'username',
@@ -99,6 +99,12 @@ export class ClientService {
       if (usernameError) {
         throw new Error(usernameError);
       }
+    }
+
+    if (!payload.senha || payload.senha.trim() === '') {
+      delete payload.senha;
+    } else {
+      payload.senha = await this.passwordService.hashPassword(payload.senha);
     }
 
     Object.assign(client, payload);

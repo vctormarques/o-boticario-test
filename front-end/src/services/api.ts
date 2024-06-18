@@ -123,6 +123,14 @@ export const endpoints = {
         .catch(({ response }) => {
           throw response.data;
         });
+    },
+    update: async (id: string, payload: IClientRequest) => {
+      return await apiBoticario
+        .put(`/client/${id}`, payload) 
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response.data;
+        });
     }
   },
   product: {
