@@ -1,0 +1,551 @@
+{
+	"info": {
+		"_postman_id": "e34b43c3-c12e-4135-b972-899c728534f8",
+		"name": "Boticario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2593245"
+	},
+	"item": [
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/client",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"vctormarques1\",\r\n  \"senha\": \"senha123\",\r\n  \"nome\": \"Victor Marques de Paula\",\r\n  \"email\": \"victor@gmail.com\",\r\n  \"cpf\": \"12533811103\",\r\n  \"telefone\": \"6499999999\",\r\n  \"data_nascimento\": \"2024-06-01T03:00:00.000Z\",\r\n  \"endereco_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/client",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/client/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"client",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/address",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cep\": \"01100000\",\r\n  \"rua\": \"Rua Joao da Cruz\",\r\n  \"bairro\": \"Ponte Pequena\",\r\n  \"cidade\": \"São Paulo\",\r\n  \"numero\": \"1326\",\r\n  \"complemento\": \"\",\r\n  \"uf\": \"SP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/address",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/address/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"address",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/category",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome_categoria\": \"Nome da categoria\",\r\n  \"descricao_categoria\": \"Descrição da categoria\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/category",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/category/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"category",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/product",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome_produto\": \"Nome da produto\",\r\n  \"descricao_produto\": \"Descrição da produto\",\r\n  \"preco_produto\": \"152.21\",\r\n  \"qtd_estoque\": \"15\",\r\n  \"imagem\": \"string\",\r\n  \"categoria_id\": \"9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/product",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/product/2",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"product",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/order",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "productsOrder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/order/1/products",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"order",
+								"1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IlRlc3RlIGRlIE9saXZlaXJhIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTcxODY3MzMxMSwiZXhwIjoxNzE4Njc2OTExfQ.QopiAhqotLh2lnzBUTY8Jdcf0eZt2hgdAxGXDfWTwT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numero_pedido\": 1234,\r\n  \"valor_total_pedido\": 548.71,\r\n  \"cliente_id\": 1,\r\n  \"produtos\": [\r\n    {\r\n      \"produto_id\": 1,\r\n      \"qtd_produto_pedido\": 12,\r\n      \"preco_produto_pedido\": \"15.9\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/order",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:2000/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:2000/api/v1",
+			"type": "string"
+		}
+	]
+}
