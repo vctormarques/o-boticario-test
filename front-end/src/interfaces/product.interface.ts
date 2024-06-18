@@ -24,6 +24,8 @@ export interface IProductRequest {
 export interface IProductTableProps {
   products: IProduct[];
   onDelete: (index: number) => void;
+  onEdit: (product: IProduct) => void;
+
 }
 export interface IProductOrderTableProps {
   products: IProductOrder[];
@@ -33,4 +35,11 @@ export interface IProductCreateModalProps {
   isOpen: boolean;
   onClose: () => void;
   onCreate: (product: IProductRequest) => void;
+}
+
+export interface IEditProductModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onEdit: (payload: FormData, id: string) => void;
+  product: IProduct | null;
 }

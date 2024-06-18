@@ -62,11 +62,12 @@ export class ProductService {
   ): Promise<ProductEntity> {
     const product = await this.productRepository.findOne({
       where: { produto_id: parseInt(id) },
+      relations: ['categoria'],
     });
     if (!product) {
       throw new NotFoundException(`Produto com id ${id} não encontrado`);
     }
-
+    
     let qtd_estoque = parseInt(payload.qtd_estoque);
     let preco_produto = parseFloat(payload.preco_produto);
 
@@ -77,6 +78,12 @@ export class ProductService {
       categoria: payload.categoria_id,
     });
 
-    return this.productRepository.save(product);
+    await this.productRepository.save(product);
+    const newProduct = await this.productRepository.findOne({
+      where: { produto_id: parseInt(id) },
+      relations: ['categoria'],
+    });
+    return newProduct;
+
   }
 }

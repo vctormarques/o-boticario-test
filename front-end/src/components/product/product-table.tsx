@@ -1,12 +1,13 @@
 import React from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td, IconButton } from '@chakra-ui/react';
-import { DeleteIcon } from '@chakra-ui/icons';
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { IProductTableProps } from 'interfaces/product.interface';
 import { masker } from 'helpers/masker';
 
 const ProductTable: React.FC<IProductTableProps> = ({
   products,
-  onDelete
+  onDelete,
+  onEdit
 }) => {
   return (
     <Table>
@@ -31,8 +32,18 @@ const ProductTable: React.FC<IProductTableProps> = ({
             <Td>
               <IconButton
                 variant="outline"
+                colorScheme="orange"
+                aria-label="Editar produto"
+                icon={<EditIcon />}
+                onClick={() => onEdit(prod)}
+                mr={2}
+              />
+            </Td>
+            <Td>
+              <IconButton
+                variant="outline"
                 colorScheme="red"
-                aria-label="Excluir endereço"
+                aria-label="Excluir produto"
                 size="md"
                 icon={<DeleteIcon />}
                 onClick={() => onDelete(prod.produto_id)}

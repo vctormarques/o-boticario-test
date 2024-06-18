@@ -169,6 +169,18 @@ export const endpoints = {
         .catch(({ response }) => {
           throw response.data;
         });
+    },
+    update: async (id: string, payload: FormData) => {
+      return await apiBoticario
+        .put(`/product/${id}`, payload, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response.data;
+        });
     }
   },
   order: {

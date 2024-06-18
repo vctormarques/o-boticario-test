@@ -9,6 +9,7 @@ import { IProduct, IProductRequest } from 'interfaces/product.interface';
 import ProductTable from 'components/product/product-table';
 import CreateProductModal from 'components/product/create-product-modal';
 import { masker } from 'helpers/masker';
+import EditProductModal from 'components/product/edit-product-modal';
 
 export default function ProductPage() {
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -20,6 +21,8 @@ export default function ProductPage() {
   const [selectedProductIndex, setSelectedProductIndex] = useState<
     number | null
   >(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useBoolean(false);
+  const [selectedProduct, setSelectedProduct] = useState<IProduct | null>(null);
 
   useEffect(() => {
     setIsLoading.on();
@@ -52,8 +55,15 @@ export default function ProductPage() {
     setIsCreateModalOpen.on();
   };
 
+  const handleEdit = (product: IProduct) => {
+    setSelectedProduct(product);
+    setIsEditModalOpen.on();
+  };
+
   const handleCreateProduct = (payload: IProductRequest) => {
-    const preco_produto = masker.money_to_Float(payload.preco_produto.toString());
+    const preco_produto = masker.money_to_Float(
+      payload.preco_produto.toString()
+    );
     const formData = new FormData();
     if (payload.imagem) {
       formData.append('imagem', payload.imagem);
@@ -89,6 +99,39 @@ export default function ProductPage() {
       .finally(() => {
         setIsLoading.off();
         setIsModalOpen.off();
+      });
+  };
+
+  const handleEditProduct = (formData: FormData, id: string) => {
+    setIsLoading.on();
+    endpoints.product
+      .update(id, formData)
+      .then((result) => {
+        toast({
+          title: 'Success',
+          description: 'Produto atualizado com sucesso.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true
+        });
+        setProducts((prevProducts) =>
+          prevProducts.map((product) =>
+            product.produto_id === parseInt(id) ? result : product
+          )
+        );
+      })
+      .catch((errors) => {
+        toast({
+          title: 'Erro',
+          description: errors.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true
+        });
+      })
+      .finally(() => {
+        setIsLoading.off();
+        setIsEditModalOpen.off();
       });
   };
 
@@ -143,6 +186,12 @@ export default function ProductPage() {
         onClose={setIsCreateModalOpen.off}
         onCreate={handleCreateProduct}
       />
+      <EditProductModal
+        isOpen={isEditModalOpen}
+        onClose={setIsEditModalOpen.off}
+        onEdit={handleEditProduct}
+        product={selectedProduct}
+      />
       <Box
         borderWidth="1px"
         borderRadius="lg"
@@ -166,7 +215,11 @@ export default function ProductPage() {
             p={4}
           >
             {products.length > 0 ? (
-              <ProductTable products={products} onDelete={handleDelete} />
+              <ProductTable
+                products={products}
+                onDelete={handleDelete}
+                onEdit={handleEdit}
+              />
             ) : (
               <Heading size="sm" color="gray.600">
                 Nenhum produto encontrado.
