@@ -8,6 +8,7 @@ import { Repository } from 'typeorm';
 import { CategoryEntity } from '../entities/category.entity';
 import { CreateCategoryRequestDto } from '../dtos/request/create-category.dto';
 import { ProductEntity } from '@modules/product/entities/product.entity';
+import { UpdateCategoryRequestDto } from '../dtos/request/update-category.dto';
 
 @Injectable()
 export class CategoryService {
@@ -49,5 +50,22 @@ export class CategoryService {
       throw new NotFoundException(`Categoria com ID ${id} não encontrada`);
     }
     return { message: 'Deletado com sucesso' };
+  }
+
+  
+  async update(
+    id: string,
+    payload: UpdateCategoryRequestDto
+  ): Promise<CategoryEntity> {
+    const address = await this.categoryRepository.findOne({
+      where: { categoria_id: parseInt(id) },
+    });
+    if (!address) {
+      throw new NotFoundException(`Categoria com id ${id} não encontrado`);
+    }
+
+    Object.assign(address, payload);
+
+    return this.categoryRepository.save(address);
   }
 }
