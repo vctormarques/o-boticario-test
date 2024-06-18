@@ -1,10 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Equal, Not, Repository } from 'typeorm';
 import { ClientEntity } from '../entities/client.entity';
 import { CreateClientRequestDto } from '../dtos/request/create-client.dto';
 import { AddressEntity } from '@modules/address/entities/address.entity';
 import { PasswordService } from './password.service';
+import { UpdateClientRequestDto } from '../dtos/request/update-client.dto';
 
 @Injectable()
 export class ClientService {
@@ -35,19 +36,21 @@ export class ClientService {
         );
       }
 
-      if(payload.cpf){
+      if (payload.cpf) {
         const cpfError = await this.checkIfExists('cpf', payload.cpf);
         if (cpfError) {
           throw new Error(cpfError);
         }
       }
-
-      const usernameError = await this.checkIfExists(
-        'username',
-        payload.username
-      );
-      if (usernameError) {
-        throw new Error(usernameError);
+      
+      if (payload.username) {
+        const usernameError = await this.checkIfExists(
+          'username',
+          payload.username
+        );
+        if (usernameError) {
+          throw new Error(usernameError);
+        }
       }
 
       const client = this.clientRepository.create({
@@ -69,6 +72,40 @@ export class ClientService {
     return { message: 'Deletado com sucesso' };
   }
 
+  async update(
+    id: string,
+    payload: UpdateClientRequestDto
+  ): Promise<ClientEntity> {
+    const client = await this.clientRepository.findOne({
+      where: { cliente_id: parseInt(id) },
+    });
+    if (!client) {
+      throw new NotFoundException(`Categoria com id ${id} não encontrado`);
+    }
+
+    if (payload.cpf) {
+      const cpfError = await this.checkIfExists('cpf', payload.cpf, id);
+      if (cpfError) {
+        throw new Error(cpfError);
+      }
+    }
+
+    if (payload.username) {
+      const usernameError = await this.checkIfExists(
+        'username',
+        payload.username,
+        id
+      );
+      if (usernameError) {
+        throw new Error(usernameError);
+      }
+    }
+
+    Object.assign(client, payload);
+
+    return this.clientRepository.save(client);
+  }
+
   async validateClientCredentials(
     username: string
   ): Promise<ClientEntity | null> {
@@ -81,11 +118,16 @@ export class ClientService {
 
   async checkIfExists(
     texto: string,
-    value: string
+    value: string,
+    excludeId?: string
   ): Promise<string | undefined> {
     try {
       let whereClause = {};
       whereClause[texto] = value;
+
+      if (excludeId) {
+        whereClause['cliente_id'] = Not(Equal(parseInt(excludeId)));
+      }
 
       const existingClient = await this.clientRepository.findOne({
         where: whereClause,

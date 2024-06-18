@@ -57,15 +57,15 @@ export class CategoryService {
     id: string,
     payload: UpdateCategoryRequestDto
   ): Promise<CategoryEntity> {
-    const address = await this.categoryRepository.findOne({
+    const category = await this.categoryRepository.findOne({
       where: { categoria_id: parseInt(id) },
     });
-    if (!address) {
+    if (!category) {
       throw new NotFoundException(`Categoria com id ${id} não encontrado`);
     }
 
-    Object.assign(address, payload);
+    Object.assign(category, payload);
 
-    return this.categoryRepository.save(address);
+    return this.categoryRepository.save(category);
   }
 }
