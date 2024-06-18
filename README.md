@@ -9,6 +9,10 @@ Este repositório contém a implementação de um teste técnico. O projeto cons
 - Front-end
 [Clique aqui](https://github.com/vctormarques/o-boticario-test/tree/master/front-end) para rodar o front-end.
 
+- Na raiz do diretório tem o SQL para rodar e popular o banco de dados
+
+- Pasta colletion, tem o json para importar no Postman
+
 ## Observações
 
 Quando rodar o comando start, vai popular algumas tabela do banco. Quando for acessar digitar o usuário sem precisa de cadastrar manual<br>
@@ -17,7 +21,6 @@ Senha: admin
 ```
 npm run start
 ```
-
 
 
 ## Abaixo alguns prints do sistema
