@@ -35,7 +35,16 @@ export class Kernel {
       .setTitle('Boticário')
       .setDescription('API do Boticário')
       .setVersion(version)
-      .addBearerAuth() 
+      .addBearerAuth(
+        {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+          name: 'Authorization',
+          in: 'header',
+        },
+        'JWT-auth',
+      )
       .build();
 
     const document = SwaggerModule.createDocument(this.app, config);

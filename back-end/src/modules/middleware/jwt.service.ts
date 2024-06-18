@@ -1,4 +1,3 @@
-// jwt.service.ts
 import { Injectable } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
 
@@ -24,7 +23,7 @@ export class JwtService {
     };
   }
 
-  verify(token: string): IJwtData | 'JWT_SECRET_NOT_FOUND' | 'INVALID_TOKEN' {
+  verify(token: string): IJwtData | 'JWT_SECRET_NOT_FOUND' | 'INVALID_TOKEN' | 'TOKEN_EXPIRED' {
     if (!process.env.JWT_SECRET) return 'JWT_SECRET_NOT_FOUND';
 
     try {
@@ -35,6 +34,9 @@ export class JwtService {
 
       return decoded as IJwtData;
     } catch (error) {
+      if (error.name === 'TokenExpiredError') {
+        return 'TOKEN_EXPIRED';
+      }
       return 'INVALID_TOKEN';
     }
   }
