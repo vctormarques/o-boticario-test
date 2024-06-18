@@ -8,6 +8,7 @@ import ConfirmModal from 'components/modal/confirm-delete-modal';
 import AddressTable from 'components/address/address-table';
 import { IAddress, IAddressRequest } from 'interfaces/address.interface';
 import CreateAddressModal from 'components/address/create-address-modal';
+import EditAddressModal from 'components/address/update-address-modal';
 
 export default function AddressPage() {
   const [adresses, setAdresses] = useState<IAddress[]>([]);
@@ -19,6 +20,8 @@ export default function AddressPage() {
   const [selectedAddressIndex, setSelectedAddressIndex] = useState<
     number | null
   >(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useBoolean(false);
+  const [selectedAddress, setSelectedAddress] = useState<IAddress | null>(null);
 
   useEffect(() => {
     setIsLoading.on();
@@ -51,6 +54,11 @@ export default function AddressPage() {
     setIsCreateModalOpen.on();
   };
 
+  const handleEdit = (address: IAddress) => {
+    setSelectedAddress(address);
+    setIsEditModalOpen.on();
+  };
+
   const handleCreateAddress = (payload: IAddressRequest) => {
     setIsLoading.on();
     endpoints.address
@@ -77,6 +85,39 @@ export default function AddressPage() {
       .finally(() => {
         setIsLoading.off();
         setIsModalOpen.off();
+      });
+  };
+
+  const handleEditAddress = (payload: IAddressRequest, id: string) => {
+    setIsLoading.on();
+    endpoints.address
+      .update(id, payload)
+      .then((result) => {
+        toast({
+          title: 'Success',
+          description: 'Endereço atualizado com sucesso.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true
+        });
+        setAdresses((prevAdresses) =>
+          prevAdresses.map((address) =>
+            address.endereco_id === parseInt(id) ? result : address
+          )
+        );
+      })
+      .catch((errors) => {
+        toast({
+          title: 'Erro',
+          description: errors.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true
+        });
+      })
+      .finally(() => {
+        setIsLoading.off();
+        setIsEditModalOpen.off();
       });
   };
 
@@ -131,6 +172,12 @@ export default function AddressPage() {
         onClose={setIsCreateModalOpen.off}
         onCreate={handleCreateAddress}
       />
+      <EditAddressModal
+        isOpen={isEditModalOpen}
+        onClose={setIsEditModalOpen.off}
+        onEdit={handleEditAddress}
+        address={selectedAddress}
+      />
       <Box
         borderWidth="1px"
         borderRadius="lg"
@@ -154,7 +201,11 @@ export default function AddressPage() {
             p={4}
           >
             {adresses.length > 0 ? (
-              <AddressTable adresses={adresses} onDelete={handleDelete} />
+              <AddressTable
+                adresses={adresses}
+                onDelete={handleDelete}
+                onEdit={handleEdit}
+              />
             ) : (
               <Heading size="sm" color="gray.600">
                 Nenhum endereço encontrado.

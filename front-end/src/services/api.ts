@@ -89,6 +89,14 @@ export const endpoints = {
         .catch(({ response }) => {
           throw response.data;
         });
+    },
+    update: async (id: string, payload: IAddressRequest) => {
+      return await apiBoticario
+        .put(`/address/${id}`, payload) 
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response.data;
+        });
     }
   },
   client: {
@@ -138,7 +146,7 @@ export const endpoints = {
       return await apiBoticario
         .post(`/product/`, payload, {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data'
           }
         })
         .then((result) => result.data)

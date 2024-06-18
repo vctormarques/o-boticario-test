@@ -22,6 +22,7 @@ export interface IAddressRequest {
 export interface IAddressTableProps {
   adresses: IAddress[];
   onDelete: (index: number) => void;
+  onEdit: (address: IAddress) => void;
 }
 
 export interface IAddressCreateModalProps {
@@ -29,3 +30,11 @@ export interface IAddressCreateModalProps {
   onClose: () => void;
   onCreate: (address: IAddressRequest) => void;
 }
+
+export interface IAddressEditModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onEdit: (payload: IAddressRequest, id: string) => void;
+  address: IAddress | null;
+}
+
