@@ -8,6 +8,7 @@ import CategoryTable from 'components/category/category-table';
 import ConfirmModal from 'components/modal/confirm-delete-modal';
 import { ICategory, ICategoryRequest } from 'interfaces/category.interface';
 import CreateCategoryModal from 'components/category/create-category-modal';
+import EditCategoryModal from 'components/category/edit-category-modal';
 
 export default function CategoryPage() {
   const [categories, setCategories] = useState<ICategory[]>([]);
@@ -19,6 +20,8 @@ export default function CategoryPage() {
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState<
     number | null
   >(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useBoolean(false); 
+  const [selectedCategory, setSelectedCategory] = useState<ICategory | null>(null); 
 
   useEffect(() => {
     setIsLoading.on();
@@ -51,6 +54,11 @@ export default function CategoryPage() {
     setIsCreateModalOpen.on();
   };
 
+  const handleEdit = (category: ICategory) => {
+    setSelectedCategory(category);
+    setIsEditModalOpen.on();
+  };
+
   const handleCreateCategory = (payload: ICategoryRequest) => {
     setIsLoading.on();
     endpoints.category
@@ -77,6 +85,39 @@ export default function CategoryPage() {
       .finally(() => {
         setIsLoading.off();
         setIsModalOpen.off();
+      });
+  };
+
+  const handleEditCategory = (payload: ICategoryRequest, id: string) => {
+    setIsLoading.on();
+    endpoints.category
+      .update(id, payload)
+      .then((result) => {
+        toast({
+          title: 'Success',
+          description: 'Categoria atualizada com sucesso.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+        setCategories((prevCategories) =>
+          prevCategories.map((category) =>
+            category.categoria_id === parseInt(id) ? result : category
+          )
+        );
+      })
+      .catch((errors) => {
+        toast({
+          title: 'Erro',
+          description: errors.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      })
+      .finally(() => {
+        setIsLoading.off();
+        setIsEditModalOpen.off();
       });
   };
 
@@ -131,6 +172,12 @@ export default function CategoryPage() {
         onClose={setIsCreateModalOpen.off}
         onCreate={handleCreateCategory}
       />
+       <EditCategoryModal
+        isOpen={isEditModalOpen}
+        onClose={setIsEditModalOpen.off}
+        onEdit={handleEditCategory}
+        category={selectedCategory}
+      />
       <Box
         borderWidth="1px"
         borderRadius="lg"
@@ -154,7 +201,11 @@ export default function CategoryPage() {
             p={4}
           >
             {categories.length > 0 ? (
-              <CategoryTable categories={categories} onDelete={handleDelete} />
+             <CategoryTable
+             categories={categories}
+             onDelete={handleDelete}
+             onEdit={handleEdit} 
+           />
             ) : (
               <Heading size="sm" color="gray.600">
                 Nenhuma categoria encontrada.

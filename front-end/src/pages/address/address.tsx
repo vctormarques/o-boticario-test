@@ -8,7 +8,7 @@ import ConfirmModal from 'components/modal/confirm-delete-modal';
 import AddressTable from 'components/address/address-table';
 import { IAddress, IAddressRequest } from 'interfaces/address.interface';
 import CreateAddressModal from 'components/address/create-address-modal';
-import EditAddressModal from 'components/address/update-address-modal';
+import EditAddressModal from 'components/address/edit-address-modal';
 
 export default function AddressPage() {
   const [adresses, setAdresses] = useState<IAddress[]>([]);

@@ -9,7 +9,7 @@ import { IClient, IClientRequest } from 'interfaces/client.interface';
 import ClientTable from 'components/client/client-table';
 import CreateClientModal from 'components/client/create-client-modal';
 import { masker } from 'helpers/masker';
-import EditClientModal from 'components/client/update-client-modal';
+import EditClientModal from 'components/client/edit-client-modal';
 
 export default function ClientPage() {
   const [customers, setCustomers] = useState<IClient[]>([]);

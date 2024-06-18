@@ -63,6 +63,14 @@ export const endpoints = {
         .catch(({ response }) => {
           throw response.data;
         });
+    },
+    update: async (id: string, payload: ICategoryRequest) => {
+      return await apiBoticario
+        .put(`/category/${id}`, payload)
+        .then((result) => result.data)
+        .catch(({ response }) => {
+          throw response.data;
+        });
     }
   },
   address: {
@@ -92,7 +100,7 @@ export const endpoints = {
     },
     update: async (id: string, payload: IAddressRequest) => {
       return await apiBoticario
-        .put(`/address/${id}`, payload) 
+        .put(`/address/${id}`, payload)
         .then((result) => result.data)
         .catch(({ response }) => {
           throw response.data;
@@ -126,7 +134,7 @@ export const endpoints = {
     },
     update: async (id: string, payload: IClientRequest) => {
       return await apiBoticario
-        .put(`/client/${id}`, payload) 
+        .put(`/client/${id}`, payload)
         .then((result) => result.data)
         .catch(({ response }) => {
           throw response.data;

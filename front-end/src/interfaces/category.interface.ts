@@ -11,6 +11,8 @@ export interface ICategoryRequest {
 export interface ICategoryTableProps {
   categories: ICategory[];
   onDelete: (index: number) => void;
+  onEdit: (client: ICategory) => void;
+
 }
 
 export interface ICategoryModalProps {

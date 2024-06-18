@@ -1,11 +1,12 @@
 import React from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td, IconButton } from '@chakra-ui/react';
-import { DeleteIcon } from '@chakra-ui/icons';
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { ICategoryTableProps } from 'interfaces/category.interface';
 
 const CategoryTable: React.FC<ICategoryTableProps> = ({
   categories,
-  onDelete
+  onDelete,
+  onEdit
 }) => {
   return (
     <Table>
@@ -14,6 +15,7 @@ const CategoryTable: React.FC<ICategoryTableProps> = ({
           <Th>#</Th>
           <Th>Nome</Th>
           <Th>Descrição</Th>
+          <Th>Editar</Th>
           <Th>Excluir</Th>
         </Tr>
       </Thead>
@@ -23,6 +25,16 @@ const CategoryTable: React.FC<ICategoryTableProps> = ({
             <Td>{index + 1}</Td>
             <Td>{cat.nome_categoria}</Td>
             <Td>{cat.descricao_categoria}</Td>
+            <Td>
+              <IconButton
+                variant="outline"
+                colorScheme="orange"
+                aria-label="Editar categoria"
+                icon={<EditIcon />}
+                onClick={() => onEdit(cat)}
+                mr={2}
+              />
+            </Td>
             <Td>
               <IconButton
                 variant="outline"
