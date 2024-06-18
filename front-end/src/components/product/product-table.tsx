@@ -18,6 +18,7 @@ const ProductTable: React.FC<IProductTableProps> = ({
           <Th>Preço</Th>
           <Th>Estoque</Th>
           <Th>Categoria</Th>
+          <Th>Editar</Th>
           <Th>Excluir</Th>
         </Tr>
       </Thead>
