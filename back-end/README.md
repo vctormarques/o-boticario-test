@@ -62,7 +62,7 @@ Inicialize o projeto
 npm start
 ```
 
-- O Swagger está disponivel no endpoint /docs
+- O Swagger está disponivel no endpoint api/v1/docs
 
 Comandos adicionais
 ```
