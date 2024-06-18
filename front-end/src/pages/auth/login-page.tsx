@@ -46,7 +46,13 @@ export default function LoginPage() {
         signin(options);
       })
       .catch(({ response }) => {
-        console.log(response);
+        toast({
+          title: 'Erro',
+          description: response.data.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true
+        });
       })
       .finally(() => {
         setIsLoading.off();
