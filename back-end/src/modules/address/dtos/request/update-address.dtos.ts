@@ -1,9 +1,18 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsInt, IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class UpdateAddressRequestDto {
+  @IsNotEmpty()
+  @IsNumber()
+  @ApiProperty({
+    description: 'ID do endereço',
+    example: 1,
+    required: true,
+  })
+  endereco_id: number;
+
   @IsString()
-  @MaxLength(20)
+  @MaxLength(9)
   @ApiProperty({
     description: 'CEP',
     maxLength: 9,
@@ -21,7 +30,7 @@ export class UpdateAddressRequestDto {
   rua: string;
 
   @IsString()
-  @MaxLength(20)
+  @MaxLength(30)
   @ApiProperty({
     description: 'Bairro',
     maxLength: 30,
@@ -39,7 +48,7 @@ export class UpdateAddressRequestDto {
   cidade: string;
 
   @IsString()
-  @MaxLength(10)
+  @MaxLength(9)
   @ApiProperty({
     description: 'Número',
     maxLength: 9,
@@ -51,7 +60,7 @@ export class UpdateAddressRequestDto {
   @MaxLength(100)
   @ApiProperty({
     description: 'Complemento',
-    maxLength: 9,
+    maxLength: 100,
     example: '',
   })
   complemento: string;
@@ -60,7 +69,7 @@ export class UpdateAddressRequestDto {
   @MaxLength(2)
   @ApiProperty({
     description: 'UF',
-    maxLength: 9,
+    maxLength: 2,
     example: 'SP',
   })
   uf: string;
