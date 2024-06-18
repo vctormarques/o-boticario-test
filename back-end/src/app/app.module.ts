@@ -13,6 +13,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerModule } from 'nestjs-pino';
 import { join } from 'path';
+import { SeedService } from '@config/SeedService';
 
 @Module({
   imports: [
@@ -40,5 +41,6 @@ import { join } from 'path';
       rootPath: join(__dirname, '..', 'public'),
     }),
   ],
+  providers: [SeedService], 
 })
 export class AppModule {}

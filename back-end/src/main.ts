@@ -8,6 +8,7 @@ import { cors } from '@common/constants/cors';
 import { Kernel } from './app/kernel';
 import { JwtAuthGuard } from '@modules/middleware/jwt-auth.guard';
 import { JwtService } from '@modules/middleware/jwt.service';
+import { SeedService } from '@config/SeedService';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -20,6 +21,8 @@ async function bootstrap() {
   app.enableShutdownHooks();
   app.enableCors(cors);
   app.setGlobalPrefix('api/v1');
+  const seedService = app.get(SeedService);
+  await seedService.seed();
 
   const reflector = app.get(Reflector);
   const jwtService = app.get(JwtService);
