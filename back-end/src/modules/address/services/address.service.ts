@@ -8,6 +8,7 @@ import { Repository } from 'typeorm';
 import { AddressEntity } from '../entities/address.entity';
 import { CreateAddressRequestDto } from '../dtos/request/create-address.dto';
 import { ClientEntity } from '@modules/client/entities/client.entity';
+import { UpdateAddressRequestDto } from '../dtos/request/update-address.dtos';
 
 @Injectable()
 export class AddressService {
@@ -51,5 +52,21 @@ export class AddressService {
     }
 
     return { message: 'Deletado com sucesso' };
+  }
+
+  async update(
+    id: string,
+    payload: UpdateAddressRequestDto
+  ): Promise<AddressEntity> {
+    const address = await this.addressRepository.findOne({
+      where: { endereco_id: parseInt(id) },
+    });
+    if (!address) {
+      throw new NotFoundException(`Endereço com id ${id} não encontrado`);
+    }
+
+    Object.assign(address, payload);
+
+    return this.addressRepository.save(address);
   }
 }
